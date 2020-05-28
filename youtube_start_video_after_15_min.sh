@@ -7,8 +7,10 @@ title=$(echo "$title" | tr "\n" "|" | grep -o '<title>.*</title>' | sed 's/\(<ti
 # title=$(echo "$title" | grep -o '<title>.*</title>' | sed 's/\(<title>\|<\/title>\)//g')
 echo "Starting video"
 while [ 1 ]; do
-	google-chrome --new-window "$address"
+	google-chrome --new-window --mute-audio "$address"
+	echo `expr $min \* 60`
 	sleep `expr $min \* 60`
 	echo "reopening window now"
+	echo $title
 	wmctrl -c $title
 done
